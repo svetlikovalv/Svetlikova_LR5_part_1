@@ -6,14 +6,17 @@ using namespace std;
 
 //функция контроля вводимых данных
 bool UserInput(string input) {
-	//если строка пустая - ввод некорректен
 	if (input.empty()) return false;
-	//попытаться
+    for (char c : input) {
+        if (isalpha(c)) { // isalpha проверяет, является ли символ буквой
+            return false;
+        }
+    }
 	try {
-		//преобразование введенного значения в тип int
-		int number = stoi(input);
-}
-	catch (...) //если возникла ошибка в блоке try
+		int number = stold(input);
+		if (number < 0) return false;
+	}
+	catch (...) 
 	{ return false; }
 	return true;
 }
@@ -31,6 +34,6 @@ void EnterDigit(int& varLink, const string& label) {
 
 //вычисление площади прямоугольника
 int CalcRectangleArea(int NumberA, int NumberB) {
-	return NumberA * NumberB  ;
+	return NumberA * NumberB ;
 }
 #endif
